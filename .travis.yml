@@ -23,7 +23,6 @@ before_install:
 - echo "backend:Agg" >> .matplotlib/matplotlibrc
 
 install:
-  - sudo apt-get update
   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
@@ -32,7 +31,7 @@ install:
   - conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
-  - conda create -q -n splinart-env python=$TRAVIS_PYTHON_VERSION
+  - conda create -q -n splinart-env python=$PYVER
   - source activate splinart-env
   - travis_wait pip install -r requirements.txt
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then conda install python.app; fi;
